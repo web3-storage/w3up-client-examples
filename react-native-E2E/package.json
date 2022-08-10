@@ -62,11 +62,12 @@
   },
   "scripts": {
     "start": "expo start",
+    "start:dev": "expo start --dev",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
   "version": "1.0.0",
   "private": true,
-  "name": "wup-hackathon-spike"
+  "name": "wup-react-native-e-to-e"
 }

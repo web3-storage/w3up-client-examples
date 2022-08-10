@@ -52,5 +52,34 @@ Some valuable links:
    - run `path.sh`.
    - This will copy some necessary files into your node_modules from the patches directory (auth, validator, signer)
 
-5. You can now run the project: `yarn start`. This will begin the bundler and start the debugger. Get Expo running on your phone too. This will get the bundles from the dev service that just started
+5. make `secrets.json`. This is _temporary_ until the auth widget is done. You'll need to add these values:
 
+```
+{
+  "email": "test@test.com",
+  "secret": "<keypair secret here>",
+  "validated": true
+}
+```
+
+Clicking login in the app loads this for now
+
+6. You can now run the project: `yarn start`. This will begin the bundler and start the debugger. Get Expo running on your phone too. This will get the bundles from the dev service that just started.
+   You shoudl see:
+
+- Metro bundler will start.
+- A QR code
+- Information that the crypto package was patched
+
+If you want to see all the additional things you can do press `?`.
+
+You can see the expo app information at `http://localhost:19000/`
+
+# The App:
+
+![image](https://user-images.githubusercontent.com/954596/184031162-dc5e85ea-ab89-4106-bc9f-636efb1010f4.png)
+
+- **Car List**: view uploaded CIDs (also in the console.)
+- **Camera**: take a picture with the camera, modify it in canvas and upload
+- **Gallery**: View uploaded items.
+- **Logout/Login** Load the stuff in secrets.json or unload them and log out.
