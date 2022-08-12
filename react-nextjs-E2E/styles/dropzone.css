@@ -1,0 +1,58 @@
+.dropzone {
+  align-items: center;
+  color: var(--nsgray-600);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 25px;
+  outline: none;
+  padding: 20px;
+  transition: border 0.24s ease-in-out;
+  display: grid;
+  text-align: center;
+}
+
+.hologram {
+  text-decoration: none;
+  background-color: var(--nsgray);
+  border-color: var(--nsgray-100);
+  backface-visibility: hidden;
+  transition: all 150ms ease;
+  cursor: pointer;
+}
+
+.dropzone.hologram {
+  box-shadow: 0 0 0 1px var(--nsblack),
+    var(--dropzone-ghost-x) var(--dropzone-ghost-y) 0px 0px var(--nsgray-100);
+  border-style: solid;
+  border-width: var(--bwidth);
+  border-radius: 0px;
+  border-color: var(--nsgray-400);
+}
+
+.dropzone.active {
+  box-shadow: 0 0 0 1px var(--nsforest),
+    var(--dropzone-ghost-x-hover) var(--dropzone-ghost-y-hover) 0px 0px
+      var(--nsgreen);
+  transform: translate3d(0, calc(var(--dropzone-ghost-y) * 1 / 2), 0);
+  border-color: var(--nsforest);
+  color: var(--nsforest);
+  background-color: var(--nsgreen);
+}
+
+.dropzone.reject {
+  box-shadow: 0 0 0 1px var(--nsred),
+    var(--dropzone-ghost-x-hover) var(--dropzone-ghost-y-hover) 0px 0px
+      var(--nsred);
+  border-color: var(--nsred);
+  color: var(--nsorangred);
+  background-color: var(--nsred-100);
+}
+
+.dropzone:focus {
+  border-color: var(--nsgreen);
+}
+
+.dropzone.disabled {
+  opacity: 0.6;
+}

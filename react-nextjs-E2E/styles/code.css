@@ -1,0 +1,15 @@
+pre code {
+  display: block;
+  max-height: 500px;
+  width: 100%;
+  margin: 20px 0;
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 23px;
+  position: relative;
+  overflow: auto;
+  color: var(--ns-gray-600);
+  background-color: var(--nsgray-50);
+  border: 1px solid var(--nsgray-100);
+  padding: 1rem;
+}
