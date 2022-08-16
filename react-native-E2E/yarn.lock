@@ -1584,7 +1584,7 @@
     cborg "^1.5.4"
     multiformats "^9.5.4"
 
-"@ipld/dag-pb@^2.0.2":
+"@ipld/dag-pb@^2.0.2", "@ipld/dag-pb@^2.1.15":
   version "2.1.17"
   resolved "https://registry.yarnpkg.com/@ipld/dag-pb/-/dag-pb-2.1.17.tgz#baafe2fc6bbd1654c402a804ea54b8860cfb2912"
   integrity sha512-AmzOdmdv5hT8iGsrbpzm5R0Fvk7DEbtwcglG2gJLvW9q3zwb+E681hY4EwEELypM1Rfnp/JDA9dGqYcpEi/iAg==
@@ -1599,6 +1599,17 @@
     "@ipld/dag-cbor" "^7.0.1"
     "@ipld/dag-json" "^8.0.9"
     multiformats "^9.6.4"
+
+"@ipld/unixfs@^1.1.0-dev":
+  version "1.1.0-dev"
+  resolved "https://registry.yarnpkg.com/@ipld/unixfs/-/unixfs-1.1.0-dev.tgz#6e0460751cf8226d0ae980d4405de5f7970c0f54"
+  integrity sha512-rLMc49JZtghx2s1Ed9iAvC35PtImREMdk4on3830nOH7ohL3QGwi4dB2rtE2vPvgJonHuImP9BMK+4AcFFWMZQ==
+  dependencies:
+    "@ipld/dag-pb" "^2.1.15"
+    "@web-std/stream" "1.0.1"
+    actor "^2.3.0"
+    protobufjs "^6.11.2"
+    rabin-rs "^2.1.0"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -2693,6 +2704,13 @@
   dependencies:
     web-streams-polyfill "^3.1.1"
 
+"@web-std/stream@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@web-std/stream/-/stream-1.0.1.tgz#af2972654848e20a683781b0a50bef2ce3f011a0"
+  integrity sha512-tsz4Y0WNDgFA5jwLSeV7/UV5rfMIlj0cPsSLVfTihjaVW0OJPd5NxJ3le1B3yLyqqzRpeG5OAfJAADLc4VoGTA==
+  dependencies:
+    web-streams-polyfill "^3.1.1"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -2925,6 +2943,11 @@ acorn@^8.2.4, acorn@^8.4.1:
   version "8.8.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.0.tgz#88c0187620435c7f6015803f5539dae05a9dbea8"
   integrity sha512-QOxyigPVrpZ2GXT+PFyZTl6TtOFc5egxHIP9IlQ+RbupQuX4RkT/Bee4/kQuC02Xkzg84JcT7oLYtDIQxp+v7w==
+
+actor@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/actor/-/actor-2.3.0.tgz#28f830502af7928e1234fddc9444388b8bc481d2"
+  integrity sha512-v2MgCtSBUm/pF7O7gArnxu9aUwyLyl57zhRHWvqXK/QVTasXsu2DgwLFjABibz9jtxtT9du+11IJBQmnILl7sw==
 
 adaptive-bezier-curve@1.0.3:
   version "1.0.3"
@@ -10972,7 +10995,7 @@ prop-types@*, prop-types@^15.6.0:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-protobufjs@^6.10.2:
+protobufjs@^6.10.2, protobufjs@^6.11.2:
   version "6.11.3"
   resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.11.3.tgz#637a527205a35caa4f3e2a9a4a13ddffe0e7af74"
   integrity sha512-xL96WDdCZYdU7Slin569tFX712BxsxslWwAfAhCYjQKGTq7dAU91Lomy6nLLhh/dyGhk/YH4TwTSRxTzhuHyZg==
@@ -11146,6 +11169,11 @@ quick-lru@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-4.0.1.tgz#5b8878f113a58217848c6482026c73e1ba57727f"
   integrity sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==
+
+rabin-rs@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/rabin-rs/-/rabin-rs-2.1.0.tgz#87b4f2dea7ca69380f1fa6b9e476d99380e7dc96"
+  integrity sha512-5y72gAXPzIBsAMHcpxZP8eMDuDT98qMP1BqSDHRbHkJJXEgWIN1lA47LxUqzsK6jknOJtgfkQr9v+7qMlFDm6g==
 
 rabin-wasm@^0.1.4:
   version "0.1.5"
@@ -13686,7 +13714,7 @@ web-encoding@1.1.5:
   optionalDependencies:
     "@zxing/text-encoding" "0.9.0"
 
-web-streams-polyfill@^3.1.1:
+web-streams-polyfill@^3.1.1, web-streams-polyfill@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-3.2.1.tgz#71c2718c52b45fd49dbeee88634b3a60ceab42a6"
   integrity sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==

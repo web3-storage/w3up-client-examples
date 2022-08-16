@@ -166,12 +166,9 @@ export default class Client {
   async upload(bytes) {
     try {
       const id = await this.identity()
-      //       const file = await fetch(url)
-      //       const bytes = new Uint8Array(await file.arrayBuffer())
-      //       console.log('tyring to upload butes', bytes)
       const link = await CAR.codec.link(bytes)
-      //       const link = '123'
 
+      console.log(bytes)
       console.log('what', link.toString())
 
       const result = await Store.Add.invoke({
@@ -183,6 +180,8 @@ export default class Client {
         },
       }).execute(this.client)
 
+      console.log('response', result)
+
       // Return early if it was already uploaded.
       if (result.status === 'done') {
         return `🚗 Car ${link} is added to ${id.did()}`
@@ -192,13 +191,22 @@ export default class Client {
         throw new Error(result)
       }
 
-      // Get the returned signed URL, and upload to it.
-      const response = await fetch(result.url, {
+      const uploadOptions = {
         method: 'PUT',
         mode: 'cors',
         body: bytes,
-        headers: result.headers,
-      })
+        headers: {
+          ...result.headers,
+          'Content-Type': 'application/car',
+        },
+      }
+
+      console.log('upload', uploadOptions)
+
+      // Get the returned signed URL, and upload to it.
+      const response = await fetch(result.url, uploadOptions)
+
+      console.log('response', response)
 
       if (!response.ok) {
         throw new Error(
@@ -207,7 +215,7 @@ export default class Client {
       }
       return `S3Upload succeeded with ${response.status}: ${response.statusText}`
     } catch (error) {
-      console.log(error)
+      console.log(`S3Upload failed: ${error}`)
     }
   }
 

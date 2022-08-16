@@ -3,6 +3,7 @@
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@babel/plugin-proposal-optional-chaining": "^7.18.9",
     "@expo/webpack-config": "^0.17.0",
+    "@ipld/unixfs": "^1.1.0-dev",
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
     "@terrylinla/react-native-sketch-canvas": "^0.8.0",
@@ -51,6 +52,7 @@
     "react-native-webview": "11.18.1",
     "react-navigation": "^4.4.4",
     "tweetnacl": "^1.0.3",
+    "web-streams-polyfill": "^3.2.1",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
