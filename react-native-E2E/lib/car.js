@@ -45,7 +45,9 @@ async function createReadableBlockStreamWithWrappingDir() {
     writer,
     filename: 'test.md',
     //TODO: get bytse from somehwere else
-    bytes: new TextEncoder().encode('hello world, this is a test'),
+    bytes: new TextEncoder().encode(
+      'hello world, this is a test: ' + Math.floor(Math.random() * 10000)
+    ),
   })
   const dir = await wrapFilesWithDir({ writer, files: [file] })
 
