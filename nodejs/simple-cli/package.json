@@ -1,0 +1,24 @@
+{
+  "name": "simple-cli",
+  "version": "1.0.0",
+  "description": "A bare-bones command line example using w3up-client.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/web3-storage/w3up-client-examples.git"
+  },
+  "author": "Yusef Napora <yusef@dag.house>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/web3-storage/w3up-client-examples/issues"
+  },
+  "homepage": "https://github.com/web3-storage/w3up-client-examples#readme",
+  "dependencies": {
+    "ipfs-car": "^0.8.1",
+    "w3up-client": "github:web3-storage/w3up-client"
+  }
+}
