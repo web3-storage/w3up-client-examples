@@ -2,11 +2,8 @@
   "name": "simple-cli",
   "version": "1.0.0",
   "description": "A bare-bones command line example using w3up-client.",
-  "main": "index.js",
+  "main": "upload.js",
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/web3-storage/w3up-client-examples.git"
