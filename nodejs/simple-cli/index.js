@@ -17,6 +17,9 @@ import { packToBlob } from 'ipfs-car/pack/blob'
 import fs from 'fs'
 import path from 'path'
 
+/// In this example, we always load the identity key from a `settings.json` file
+/// in the current directory. See the `loadSettings` function below.
+const SETTINGS_FILENAME = 'settings.json'
 
 /**
  * The entry-point function is invoked at the bottom of this file.
@@ -35,14 +38,18 @@ async function main() {
 
   const filename = args[0]
 
-  /// For now, we read a base64-encoded private key from the `W3UP_SECRET` environment variable.
-  /// To get the secret, you need to use w3up-cli to register an identity, then `w3up export-settings` to create a `settings.json` file
-  /// with the base64-encoded key.
-  /// TODO: add id generation / registration to this example, or bundle a key registered to an "example-code@dag.house" email.
-  if (!process.env.W3UP_SECRET) {
-    console.error('Please set an environment variable named W3UP_SECRET to a registered base64-encoded secret key')
-  }
-  const client = makeClientWithRegisteredSecretKey(process.env.W3UP_SECRET)
+  // Load the secret key from a local settings.json file.
+  // If it does not exist, `loadIdentity` will prompt the user to
+  // register an identity using the `register.js` script.
+  const { secret, email } = await loadIdentity()
+
+  // create a new w3up client using the secret key
+  const client = makeClientWithRegisteredSecretKey(secret)
+
+  // client.identity() returns an object we can use to print the `did:key:`
+  // string that is used as our public identity.
+  const id = await client.identity()
+  console.log(`Uploading as ${id.did()} (${email})`)
 
   const { rootCID, carBytes } = await prepareForUpload(filename)
   console.log(`Uploading ${filename}`)
@@ -60,16 +67,63 @@ async function main() {
   }
 }
 
-function makeClientWithRegisteredSecretKey(secretBase64) {
-  const privateKey = Uint8Array.from(Buffer.from(secretBase64, 'base64'))
-  const clientSettings = new Map([['secret', privateKey]])
+/**
+ * Loads the identity key and registered email address from a `settings.json` file in the current directory.
+ * If the file does not exist, prints an error message and exits the process.
+ * 
+ * @returns {Promise<{email: string, secret: Uint8Array}>} an object containing the secret key and registered email address
+ */
+async function loadIdentity() {
+  if (!fs.existsSync(SETTINGS_FILENAME)) {
+    const registerScriptPath = path.relative(process.cwd(), 'register.js')
+    
+    const msg = `
+      To upload files, you first need to create an identity key and register it.
+      This example script expects to load the key from a file named ${SETTINGS_FILENAME}
+
+      There are two ways to create the settings.json file:
+      
+      1) using the register.js script in this directory:
+
+      \t node ${registerScriptPath} your-email@provider.net
+
+      2) using an identity you've already registered with w3up-cli (https://github.com/web3-storage/w3up-cli)
+
+      \t w3up-cli export-settings settings.json
+    `.replace(/^ +/gm, '') // strip leading spaces from each line, but keep tabs
+
+    console.error(msg)
+    process.exit(1)
+  }
+
+  try {
+    const jsonText = await fs.promises.readFile(SETTINGS_FILENAME, 'utf-8')
+    const settings = JSON.parse(jsonText)
+    // decode the base64-encoded secret key
+    const secret = Uint8Array.from(Buffer.from(settings.secret, 'base64'))
+    const email = settings.email
+    return { email, secret }
+  } catch (err) {
+    console.error('Error parsing secret key from settings file:', err)
+    process.exit(1)
+  }
+}
+
+/**
+ * Creates a w3up Client object using the given private signing key.
+ * @param {Uint8Array} secret a secret signing key that has been registered with the w3up access service.
+ * @returns {import('w3up-client').Client} A w3up Client object configured to use the given key to authorize uploads.
+ */
+function makeClientWithRegisteredSecretKey(secret) {
+  const settings = new Map()
+  settings.set('secret', secret)
 
   return createClient({
     serviceDID: 'did:key:z6MkrZ1r5XBFZjBU34qyD8fueMbMRkKw17BZaq2ivKFjnz2z',
     serviceURL: 'https://8609r1772a.execute-api.us-east-1.amazonaws.com',
     accessDID: 'did:key:z6MkkHafoFWxxWVNpNXocFdU6PL2RVLyTEgS1qTnD3bRP7V9',
     accessURL: 'https://access-api.web3.storage',
-    settings: clientSettings,
+    settings,
   })
 }
 
