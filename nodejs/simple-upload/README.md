@@ -1,4 +1,4 @@
-# simple-cli
+# simple-client
 
 > A nodejs command-line example of using the w3up-client SDK to upload to the Web3.Storage platform.
 
