@@ -1,5 +1,5 @@
 {
-  "name": "simple-cli",
+  "name": "simple-upload",
   "version": "1.0.0",
   "description": "A bare-bones command line example using w3up-client.",
   "main": "upload.js",
