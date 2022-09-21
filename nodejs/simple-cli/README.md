@@ -4,7 +4,9 @@
 
 This example shows how to use the [w3up-client](https://github.com/web3-storage/w3up-client) library to upload files to the [Web3.Storage](https://web3.storage) platform.
 
-If you're looking for a fully-featured command line tool, please see [w3up-cli](https://github.com/web3-storage/w3up-cli) instead. This example is intentionally minimal for demonstration purposes.
+If you're looking for a fully-featured command line tool, please see [w3up-cli][] instead. This example is intentionally minimal for demonstration purposes.
+
+Note that this example works best with small files, as it uses a fairly simplistic method of generating CAR files for upload. The more advanced CAR generation code in [w3up-cli][] will soon be incorporated into the `w3up-client` package, at which point this example will be usable for large files. Until then, please use [w3up-cli][] for large files. If you need the advanced CAR chunking in a JS app today, please open an issue and let us know.
 
 ## Usage
 
@@ -72,3 +74,4 @@ Root CID: bafybeifubfw55lw66ztzdug26zocmwsylguxhurmryltbqnql5zwznkvpy
 Note that it may take a few seconds before content is available.
 ```
 
+[w3up-cli]: https://github.com/web3-storage/w3up-cli
