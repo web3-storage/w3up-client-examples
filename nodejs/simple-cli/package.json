@@ -16,6 +16,6 @@
   "homepage": "https://github.com/web3-storage/w3up-client-examples#readme",
   "dependencies": {
     "ipfs-car": "^0.8.1",
-    "w3up-client": "github:web3-storage/w3up-client"
+    "@web3-storage/w3up-client": "^2.3.0"
   }
 }
