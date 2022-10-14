@@ -38,10 +38,10 @@ async function main() {
     console.log(
       `Registering email address ${email}. Please check your inbox. If you don't see the email, check your spam folder.`
     );
-    const id = await client.identity();
+    const { agent, account } = await client.identity();
     await client.register(email);
 
-    console.log(`Success! Registered email ${email} with id ${id.did()}`);
+    console.log(`Success! Registered email ${email} with id ${account.did()}`);
     /// - On success, call saveSettings to write settings.json
     await saveSettings(client.settings);
   } catch (err) {
