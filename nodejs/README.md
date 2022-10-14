@@ -2,7 +2,7 @@
 
 This directory contains example projects targetting the [Node.js](https://nodejs.com) runtime.
 
-### simple-cli
+### simple-upload
 
-The [simple-cli](./simple-cli/) project is a bare-bones command-line utility that can upload files and print a list of uploads.
+The [simple-upload](./simple-upload/) project is a bare-bones command-line utility that can register a new UCAN identity and upload files using `w3up-client`.
 
