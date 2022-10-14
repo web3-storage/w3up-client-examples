@@ -8,7 +8,7 @@
 /// First we need to import the `createClient` function from the `w3up-client` package.
 import { createClient } from 'w3up-client'
 
-/// We also import the `packToBob` function from the `ipfs-car` package, 
+/// We also import the `packToBlob` function from the `ipfs-car` package, 
 /// to create IPFS-formatted file objects and pack them into a Content Archive (CAR) for uploading. 
 /// Note that this will likely be handled automatically by a future version of `w3up-client`.
 import { packToBlob } from 'ipfs-car/pack/blob'
